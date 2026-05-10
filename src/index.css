@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Patrick+Hand&family=Itim&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Patrick Hand", cursive;
+  --font-itim: "Itim", cursive;
+  
+  --color-brand-bg: #FFF9F5;
+  --color-brand-text: #5D4037;
+  --color-brand-accent: #E8A598;
+  --color-brand-secondary: #D7CCC8;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  @apply bg-brand-bg text-brand-text font-sans antialiased overflow-y-scroll;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
