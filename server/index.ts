@@ -6,7 +6,7 @@ import crypto from 'crypto';
 import db from './db.js';
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 3002;
 const JWT_SECRET = 'flazi-secret-key-for-auth';
 
 app.use(cors());
