@@ -12,7 +12,7 @@ export default function HeroSection() {
 
       <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-brand-accent/10 text-brand-accent rounded-full text-sm font-bold"
@@ -32,17 +32,17 @@ export default function HeroSection() {
               <span className="text-brand-accent italic font-hand text-5xl sm:text-6xl">Vui vẻ & Hiệu quả</span>
             </h1>
             <p className="text-lg text-brand-text/70 leading-relaxed max-w-lg">
-              Chinh phục HSK, luyện phát âm chuẩn và giao tiếp tự tin cùng lộ trình học cá nhân hóa. Flazi giúp việc học ngoại ngữ trở nên thú vị như một trò chơi.
+              Chinh phục HSK, luyện phát âm chuẩn và giao tiếp tự tin cùng lộ trình học cá nhân hóa. Hanzify giúp việc học ngoại ngữ trở nên thú vị như một trò chơi.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="flex flex-wrap gap-4"
           >
-            <button 
+            <button
               onClick={() => window.dispatchEvent(new Event('open_auth_modal'))}
               className="px-8 py-4 bg-brand-accent text-white rounded-2xl font-bold shadow-lg shadow-brand-accent/20 hover:bg-brand-accent/90 transition-all hover:scale-105"
             >
@@ -53,7 +53,7 @@ export default function HeroSection() {
             </button>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -76,23 +76,23 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, type: "spring" }}
           className="relative hidden lg:block"
         >
           <div className="relative z-10 bg-brand-secondary/10 rounded-[3rem] p-4 border border-brand-secondary/20">
-            <img 
-              src="https://picsum.photos/seed/learning/800/600" 
-              alt="Learning Chinese" 
+            <img
+              src="https://picsum.photos/seed/learning/800/600"
+              alt="Learning Chinese"
               className="rounded-[2.5rem] shadow-2xl"
               referrerPolicy="no-referrer"
             />
           </div>
-          
+
           {/* Floating badges */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
             className="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-brand-secondary/20 flex items-center gap-3 z-20"
@@ -106,7 +106,7 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, delay: 1 }}
             className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-brand-secondary/20 flex items-center gap-3 z-20"

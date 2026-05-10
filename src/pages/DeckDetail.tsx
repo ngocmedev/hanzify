@@ -8,6 +8,8 @@ import { Loader2, ArrowLeft, CheckCircle2, Circle, Volume2, Trophy, XCircle, Ale
 import { getLoggedInUsername } from '../services/auth';
 import { updateProgress } from '../services/progress';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002/api';
+
 export default function DeckDetail() {
   const { id } = useParams<{ id: string }>();
   const [deck, setDeck] = useState<any>(null);
@@ -27,7 +29,7 @@ export default function DeckDetail() {
         
         // Load words with progress if logged in
         if (getLoggedInUsername()) {
-          const res = await fetch(`http://localhost:3002/api/user/decks/${id}/words`, {
+          const res = await fetch(`${API_URL}/user/decks/${id}/words`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

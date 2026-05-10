@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002/api';
+
 // Mock Data
 const mockUser = {
   id: 'flazi-001',
@@ -143,7 +145,7 @@ export const api = {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const res = await axios.get('http://localhost:3002/api/user/decks', {
+        const res = await axios.get('${API_URL}/user/decks', {
           headers: { Authorization: `Bearer ${token}` }
         });
         return res;
@@ -155,32 +157,32 @@ export const api = {
   },
   getDeckById: (id: string) => axios.get(`/api/decks/${id}`),
   getWordsByDeckId: (id: string) => axios.get(`/api/decks/${id}/words`),
-  getShuffleTopics: () => axios.get('http://localhost:3002/api/shuffle-topics'),
+  getShuffleTopics: () => axios.get('${API_URL}/shuffle-topics'),
   getUserShuffleTopics: async () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const res = await axios.get('http://localhost:3002/api/user/shuffle-topics', {
+        const res = await axios.get('${API_URL}/user/shuffle-topics', {
           headers: { Authorization: `Bearer ${token}` }
         });
         return res;
       } catch (err) {
-        return axios.get('http://localhost:3002/api/shuffle-topics');
+        return axios.get('${API_URL}/shuffle-topics');
       }
     }
-    return axios.get('http://localhost:3002/api/shuffle-topics');
+    return axios.get('${API_URL}/shuffle-topics');
   },
   markShuffleSentenceCompleted: async (topicId: string, sentenceId: string) => {
     const token = localStorage.getItem('token');
     if (!token) return;
-    return axios.post('http://localhost:3002/api/user/shuffle-progress', { topicId, sentenceId }, {
+    return axios.post('${API_URL}/user/shuffle-progress', { topicId, sentenceId }, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   resetShuffleProgress: async (topicId: string) => {
     const token = localStorage.getItem('token');
     if (!token) return;
-    return axios.delete(`http://localhost:3002/api/user/shuffle-progress/${topicId}`, {
+    return axios.delete(`${API_URL}/user/shuffle-progress/${topicId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
@@ -188,16 +190,16 @@ export const api = {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        return await axios.get(`http://localhost:3002/api/user/shuffle-topics/${id}/sentences/uncompleted`, {
+        return await axios.get(`${API_URL}/user/shuffle-topics/${id}/sentences/uncompleted`, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } catch (err) {
-        return axios.get(`http://localhost:3002/api/shuffle-topics/${id}/sentences`);
+        return axios.get(`${API_URL}/shuffle-topics/${id}/sentences`);
       }
     }
-    return axios.get(`http://localhost:3002/api/shuffle-topics/${id}/sentences`);
+    return axios.get(`${API_URL}/shuffle-topics/${id}/sentences`);
   },
-  getSentencesByTopicId: (id: string) => axios.get(`http://localhost:3002/api/shuffle-topics/${id}/sentences`),
+  getSentencesByTopicId: (id: string) => axios.get(`${API_URL}/shuffle-topics/${id}/sentences`),
   getQuizTopics: () => new Promise((resolve) => setTimeout(() => resolve({ data: mockQuizTopics }), 500)),
   getQuizzesByTopicId: (id: string) => new Promise((resolve) => {
     setTimeout(() => resolve({ data: mockQuizzes[id] || [] }), 400);
@@ -205,7 +207,7 @@ export const api = {
   getNotifications: async () => {
     const token = localStorage.getItem('token');
     if (token) {
-      return axios.get('http://localhost:3002/api/notifications', {
+      return axios.get('${API_URL}/notifications', {
         headers: { Authorization: `Bearer ${token}` }
       });
     }
@@ -213,25 +215,25 @@ export const api = {
   },
   createNotification: async (message: string) => {
     const token = localStorage.getItem('token');
-    return axios.post('http://localhost:3002/api/admin/notifications', { message }, {
+    return axios.post('${API_URL}/admin/notifications', { message }, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   updateNotification: async (id: string, message: string) => {
     const token = localStorage.getItem('token');
-    return axios.put(`http://localhost:3002/api/admin/notifications/${id}`, { message }, {
+    return axios.put(`${API_URL}/admin/notifications/${id}`, { message }, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   deleteNotification: async (id: string) => {
     const token = localStorage.getItem('token');
-    return axios.delete(`http://localhost:3002/api/admin/notifications/${id}`, {
+    return axios.delete(`${API_URL}/admin/notifications/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   reactToNotification: async (id: string, reactionType: string | null) => {
     const token = localStorage.getItem('token');
-    return axios.post(`http://localhost:3002/api/notifications/${id}/react`, { reactionType }, {
+    return axios.post(`${API_URL}/notifications/${id}/react`, { reactionType }, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
@@ -239,43 +241,43 @@ export const api = {
   // Admin - Shuffle Game
   getAdminShuffleSentences: async () => {
     const token = localStorage.getItem('token');
-    return axios.get('http://localhost:3002/api/admin/shuffle-sentences', {
+    return axios.get('${API_URL}/admin/shuffle-sentences', {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   createShuffleTopic: async (data: any) => {
     const token = localStorage.getItem('token');
-    return axios.post('http://localhost:3002/api/admin/shuffle-topics', data, {
+    return axios.post('${API_URL}/admin/shuffle-topics', data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   updateShuffleTopic: async (id: string, data: any) => {
     const token = localStorage.getItem('token');
-    return axios.put(`http://localhost:3002/api/admin/shuffle-topics/${id}`, data, {
+    return axios.put(`${API_URL}/admin/shuffle-topics/${id}`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   deleteShuffleTopic: async (id: string) => {
     const token = localStorage.getItem('token');
-    return axios.delete(`http://localhost:3002/api/admin/shuffle-topics/${id}`, {
+    return axios.delete(`${API_URL}/admin/shuffle-topics/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   createShuffleSentence: async (data: any) => {
     const token = localStorage.getItem('token');
-    return axios.post('http://localhost:3002/api/admin/shuffle-sentences', data, {
+    return axios.post('${API_URL}/admin/shuffle-sentences', data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   updateShuffleSentence: async (id: string, data: any) => {
     const token = localStorage.getItem('token');
-    return axios.put(`http://localhost:3002/api/admin/shuffle-sentences/${id}`, data, {
+    return axios.put(`${API_URL}/admin/shuffle-sentences/${id}`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   },
   deleteShuffleSentence: async (id: string) => {
     const token = localStorage.getItem('token');
-    return axios.delete(`http://localhost:3002/api/admin/shuffle-sentences/${id}`, {
+    return axios.delete(`${API_URL}/admin/shuffle-sentences/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }

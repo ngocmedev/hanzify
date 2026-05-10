@@ -54,7 +54,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-brand-bg">
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         >
@@ -69,7 +69,7 @@ export default function Home() {
       <div className="min-h-screen flex items-center justify-center bg-brand-bg px-4">
         <div className="text-center space-y-4">
           <p className="text-red-500 font-bold">{error}</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="px-6 py-2 bg-brand-accent text-white rounded-full"
           >
@@ -83,7 +83,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-brand-bg">
       <Navbar />
-      
+
       <main className="max-w-5xl mx-auto px-4 py-8 space-y-12">
         {!username && (
           <div className="space-y-12">
@@ -94,7 +94,7 @@ export default function Home() {
             >
               <HeroSection />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export default function Home() {
             >
               <GreetingCard username={username || 'Bạn'} />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -155,12 +155,12 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <h2 className="text-xl font-bold px-2">Kết nối với Flazi</h2>
+              <h2 className="text-xl font-bold px-2">Kết nối với Hanzify</h2>
               <ButtonGroup socials={profile.socials} />
             </motion.div>
 
             {profile.sections.map((section: any) => (
-              <InfoSection 
+              <InfoSection
                 key={section.id}
                 title={section.title}
                 type={section.type as 'grid' | 'list'}

@@ -24,6 +24,8 @@ import {
 import { updateProgress, toggleStar } from '../services/progress';
 import { getLoggedInUsername } from '../services/auth';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002/api';
+
 let audioCtx: AudioContext | null = null;
 
 const playFlipSound = () => {
@@ -207,7 +209,7 @@ export default function FlashcardStudy() {
             setWords([]);
             return;
           }
-          const res = await fetch(`http://localhost:3002/api/user/words/starred`, {
+          const res = await fetch(`${API_URL}/user/words/starred`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
           });
           if (!res.ok) {
@@ -231,7 +233,7 @@ export default function FlashcardStudy() {
             setWords([]);
             return;
           }
-          const res = await fetch(`http://localhost:3002/api/user/words/unlearned`, {
+          const res = await fetch(`${API_URL}/user/words/unlearned`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
           });
           if (!res.ok) {
@@ -254,7 +256,7 @@ export default function FlashcardStudy() {
 
         let wordsData: any[];
         if (getLoggedInUsername()) {
-          const res = await fetch(`http://localhost:3002/api/user/decks/${id}/words`, {
+          const res = await fetch(`${API_URL}/user/decks/${id}/words`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
